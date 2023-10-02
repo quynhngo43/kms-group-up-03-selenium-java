@@ -23,6 +23,9 @@ public class LoginPage {
     @FindBy(xpath = "//button[@title='Login']")
     public WebElement eLoginButton;
 
+    @FindBy(xpath = "//div[@class='alert alert-error alert-danger']")
+    public WebElement eLoginErrorMessage;
+
     public void navigateToLoginPage(){
         eMainMenuItemRegisterLogin.click();
     }
@@ -43,6 +46,11 @@ public class LoginPage {
         enterLoginName(username);
         enterPassword(password);
         clickLogin();
+    }
+
+    public void verifyErrorMessage(String errorMessage) {
+        System.out.println("error messages");
+        System.out.println(eLoginErrorMessage.getText());
     }
 
 }
