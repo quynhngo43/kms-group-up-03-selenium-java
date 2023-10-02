@@ -34,8 +34,8 @@ public class LoginPageSteps extends BasePage {
         loginPage.enterPassword(newPassword);
     }
 
-    @Then("verify that user gets error message with value {string}")
-    public void verifyThatUserGetsErrorMessageWithValue(String errorMessage) {
-        loginPage.verifyErrorMessage(errorMessage);
+    @Then("verify that user gets error message")
+    public void verifyThatUserGetsErrorMessageWithValue() {
+        loginPage.verifyErrorMessage();
     }
 }

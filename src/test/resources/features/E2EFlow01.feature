@@ -35,7 +35,7 @@ Feature: Test E2E Flow 01
     And user login with wrong Password
     And user click Login button to login
     And user click Login button to login
-    Then verify that user gets error message with value "Error: Incorrect login or password provided."
+    Then verify that user gets error message
     Examples:
       | firstname | lastname | telephone  | fax   | company | firstAddress | secondAddress | city  | zip   |
       | Ngo       | Quynh    | 0987654321 | 10000 | KMS     | A street     | B District    | Login | 10000 |

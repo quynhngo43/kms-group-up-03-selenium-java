@@ -97,18 +97,12 @@ public class RegisterPage {
     public void enterPostCode(String postcode) {
         CommonPage.setText(ePostcode, postcode);
     }
-
     public void enterCompany(String company) { CommonPage.setText(eCompany, company);}
-
     public void clickOnAgreePolicyCheckbox(){
         eAgreePolicyCheckbox.click();
     }
     public void clickOnRegisterButton(){
         eContinueButton.click();
-    }
-
-    public void verifySuccessfulRegistration() {
-
     }
 
     public void clickOnLogoutButton() {

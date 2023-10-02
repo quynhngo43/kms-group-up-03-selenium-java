@@ -42,13 +42,7 @@ public class LoginPage {
         eLoginButton.click();
     }
 
-    public void login(String username, String password) {
-        enterLoginName(username);
-        enterPassword(password);
-        clickLogin();
-    }
-
-    public void verifyErrorMessage(String errorMessage) {
+    public void verifyErrorMessage() {
         System.out.println("error messages");
         System.out.println(eLoginErrorMessage.getText());
     }
