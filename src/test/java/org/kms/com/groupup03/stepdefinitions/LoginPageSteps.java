@@ -8,6 +8,8 @@ import org.kms.com.groupup03.pageobjects.LoginPage;
 import org.kms.com.groupup03.utils.DataGenerator;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.Objects;
+
 public class LoginPageSteps extends BasePage {
     LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
 
@@ -16,26 +18,19 @@ public class LoginPageSteps extends BasePage {
         loginPage.navigateToLoginPage();
     }
 
-    @Given("user click Login button to login")
-    public void userClickLoginButtonToLogin() {
-        loginPage.clickLogin();
-    }
-
-    @Given("user type in the Loginname and Password to login")
-    public void userTypeInThePasswordWithValueToLogin() {
+    @And("user type in the Loginname and Password to login with {} data")
+    public void userTypeInTheLoginnameAndPasswordToLoginWithData(String isValidData) {
         loginPage.enterLoginName(CommonPageSteps.loginName);
-        loginPage.enterPassword(CommonPageSteps.password);
+        if (isValidData.equals("valid")) {
+            loginPage.enterPassword(CommonPageSteps.password);
+        }
+        else if (isValidData.equals("invalid")) {
+            loginPage.enterPassword(DataGenerator.randomPassword());
+        }
     }
 
-    @And("user login with wrong Password")
-    public void userLoginWithWrongPassword() {
-        String newPassword = DataGenerator.randomPassword();
-        loginPage.enterLoginName(CommonPageSteps.loginName);
-        loginPage.enterPassword(newPassword);
-    }
-
-    @Then("verify that user gets error message")
-    public void verifyThatUserGetsErrorMessageWithValue() {
-        loginPage.verifyErrorMessage();
+    @Then("verify that user receive {} message {}")
+    public void verifyThatUserReceiveMessage(String type, String expectedMessage) {
+        loginPage.verifyLoginMessage(type, expectedMessage);
     }
 }

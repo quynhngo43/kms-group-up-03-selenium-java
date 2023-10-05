@@ -101,9 +101,6 @@ public class RegisterPage {
     public void clickOnAgreePolicyCheckbox(){
         eAgreePolicyCheckbox.click();
     }
-    public void clickOnRegisterButton(){
-        eContinueButton.click();
-    }
 
     public void clickOnLogoutButton() {
         eMenu.click();

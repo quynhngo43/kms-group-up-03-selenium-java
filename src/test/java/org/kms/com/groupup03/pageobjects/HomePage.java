@@ -21,12 +21,6 @@ public class HomePage {
     @FindBy(xpath = "//i[@class='fa fa-search']")
     public WebElement eSearchIcon;
 
-    @FindBy(xpath = "//a[@title='MAN Eau de Toilette Spray']//ancestor::div[@id='maincontainer']//div[4]//div[2]//div[3]//a[1]//i[1]")
-    public WebElement eProductMANEauDeToiletteSprayToCartIcon;
-
-    @FindBy(xpath = "//a[@title='Euphoria Men Intense Eau De Toilette Spray']//ancestor::div[@class='thumbnails grid row list-inline']//div[3]//div[2]//div[3]//a[1]//i[1]")
-    public WebElement eProductEuphoriaMenIntenseToCartIcon;
-
     public final String PRODUCT_TO_CARD_XPATH = "//a[@title='%s']//ancestor::div[@class='col-md-3 col-sm-6 col-xs-12']//div[2]//div[3]//a[1]//i[1]";
 
     public void addProductToCart(String productName) {

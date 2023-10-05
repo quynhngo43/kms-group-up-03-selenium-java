@@ -1,8 +1,10 @@
 package org.kms.com.groupup03.pageobjects;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.testng.Assert;
 
 public class LoginPage {
     final WebDriver driver;
@@ -20,11 +22,13 @@ public class LoginPage {
     @FindBy(xpath = "//input[@name='password']")
     public WebElement ePasswordTextbox;
 
-    @FindBy(xpath = "//button[@title='Login']")
-    public WebElement eLoginButton;
+    @FindBy(xpath = "//div[contains(text(), 'Welcome back']")
+    public WebElement eLoginSuccessMessage;
 
     @FindBy(xpath = "//div[@class='alert alert-error alert-danger']")
     public WebElement eLoginErrorMessage;
+
+    public static final String SUCCESS_LOGIN_MESSAGE_XPATH = "//div[contains(text(), '%s')]";
 
     public void navigateToLoginPage(){
         eMainMenuItemRegisterLogin.click();
@@ -38,13 +42,13 @@ public class LoginPage {
         CommonPage.setText(ePasswordTextbox, password);
     }
 
-    public void clickLogin() {
-        eLoginButton.click();
+    public void verifyLoginMessage(String type, String message) {
+        if (type.equals("successful")) {
+            WebElement element = this.driver.findElement(By.xpath(String.format(SUCCESS_LOGIN_MESSAGE_XPATH, message)));
+            CommonPage.verifyMessageByGetText(element, message);
+        }
+        else if (type.equals("error")) {
+            Assert.assertNotNull(eLoginErrorMessage);
+        }
     }
-
-    public void verifyErrorMessage() {
-        System.out.println("error messages");
-        System.out.println(eLoginErrorMessage.getText());
-    }
-
 }

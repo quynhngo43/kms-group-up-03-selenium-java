@@ -15,7 +15,7 @@ public class DeliveryPage {
     @FindBy(xpath = "//a[@id='checkout_btn']")
     WebElement eCheckoutButton;
 
-    @FindBy(xpath= "//h3[text()='Order is complete']")
+    @FindBy(xpath= "//h3[@class='text-success']")
     WebElement eSuccessOrderMessage;
 
     public final String DELIVERY_CHECKBOX_XPATH = "//b[text()='%s']//ancestor::tr//following-sibling::tr[1]//div[@class='checkbox_place']";
@@ -25,11 +25,10 @@ public class DeliveryPage {
         element.click();
     }
 
-    public void confirmOrder() {
-        eCheckoutButton.click();
+    public void confirmOrder() {eCheckoutButton.click();
     }
 
-    public void verifyThatOrderCompleted() {
-        Assert.assertNotNull(eSuccessOrderMessage);
+    public void verifyThatOrderCompleted(String message) {
+        CommonPage.verifyMessageByGetText(eSuccessOrderMessage, message);
     }
 }

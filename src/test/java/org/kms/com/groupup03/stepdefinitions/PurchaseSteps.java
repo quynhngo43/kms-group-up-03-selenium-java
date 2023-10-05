@@ -29,9 +29,9 @@ public class PurchaseSteps extends BasePage {
         homePage.addProductToCart(productName);
     }
 
-    @And("edit the number of product {string} with number of product {int}")
-    public void editTheNumberOfProductWithNumberOfProduct(String productName, int quantity) {
-        checkoutPage.enterProductQuantity(productName, Integer.toString(quantity));
+    @And("edit the number of product {string} to {}")
+    public void editTheNumberOfProductWithNumberOfProduct(String productName, String quantity) {
+        checkoutPage.enterProductQuantity(productName,quantity);
     }
 
     @And("remove the product {string} from cart")
@@ -41,7 +41,7 @@ public class PurchaseSteps extends BasePage {
 
     @Then("verify that user cannot check out with the message {string}")
     public void verifyThatUserCannotCheckOutWithTheMessage(String errorMessage) {
-        checkoutPage.verifyThatObjectExists(errorMessage);
+        checkoutPage.verifyThatCannotCheckoutMessage(errorMessage);
     }
 
     @And("select Delivery type {string}")
@@ -54,8 +54,8 @@ public class PurchaseSteps extends BasePage {
         deliveryPage.confirmOrder();
     }
 
-    @Then("verify that order completed")
-    public void verifyThat() {
-        deliveryPage.verifyThatOrderCompleted();
+    @Then("verify that order completed with message {string}")
+    public void verifyThatOrderCompleted(String message) {
+        deliveryPage.verifyThatOrderCompleted(message);
     }
 }

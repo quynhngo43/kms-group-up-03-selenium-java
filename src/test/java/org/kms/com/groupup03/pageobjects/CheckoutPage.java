@@ -17,9 +17,6 @@ public class CheckoutPage {
     @FindBy(xpath = "//a[@id='cart_checkout1']")
     public WebElement eCheckoutButton;
 
-    @FindBy(xpath = "//tbody/tr[3]/td[7]/a[1]/i[1]")
-    public WebElement eRemoveButton;
-
     @FindBy(xpath="//i[@class='fa fa-refresh']")
     public WebElement eUpdateButton;
 
@@ -27,7 +24,7 @@ public class CheckoutPage {
 
     public final String PRODUCT_INPUT_XPATH = "//td[@class='align_left']//a[text()='%s']//ancestor::tr//td[5]//div//input";
 
-    public final String PRODUCT_REMOVE_BUTTON_XPATH = "//td[@class='align_left']//a[text()='%s']//ancestor::tr//td[7]//a";
+    public final String PRODUCT_REMOVE_BUTTON_XPATH = "//a[text()='%s']//ancestor::tr//i[contains(@class, 'trash')]";
 
     public void enterProductQuantity(String productName, String quantity) {
         WebElement element = this.driver.findElement(By.xpath(String.format(PRODUCT_INPUT_XPATH, productName)));
@@ -48,8 +45,8 @@ public class CheckoutPage {
         eCheckoutButton.click();
     }
 
-    public void verifyThatObjectExists(String object) {
-        WebElement element = this.driver.findElement(By.xpath(String.format(ERROR_MESSAGE_XPATH, object)));
-        Assert.assertNotNull(element);
+    public void verifyThatCannotCheckoutMessage(String message) {
+        WebElement element = this.driver.findElement(By.xpath(String.format(ERROR_MESSAGE_XPATH, message)));
+        CommonPage.verifyMessageByGetText(element, message);
     }
 }
