@@ -22,9 +22,6 @@ public class LoginPage {
     @FindBy(xpath = "//input[@name='password']")
     public WebElement ePasswordTextbox;
 
-    @FindBy(xpath = "//div[contains(text(), 'Welcome back']")
-    public WebElement eLoginSuccessMessage;
-
     @FindBy(xpath = "//div[@class='alert alert-error alert-danger']")
     public WebElement eLoginErrorMessage;
 
